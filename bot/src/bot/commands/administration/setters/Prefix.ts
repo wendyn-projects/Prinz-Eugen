@@ -1,8 +1,9 @@
 import * as Discord from 'discord.js'
+import * as Interface from '../../../../interface'
 import GuildConfig from '../../../../server/config/GuildConfig'
-import { MessageCommand, CommandNameOption, Response } from '../../interface'
+import { CommandNameOption, Response } from '../../interface'
 
-export default class extends MessageCommand {
+export default class extends Interface.ValueAction<Response> {
 
     message: Discord.Message;
     config: GuildConfig;

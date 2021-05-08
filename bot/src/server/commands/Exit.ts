@@ -7,6 +7,7 @@ export class Exit extends Interface.ValueAction {
     constructor() {
         super('exit', []);
     }
+    
     protected execution() {
         bot.destroy();
         Configs.saveChanges().then(() => process.exit());

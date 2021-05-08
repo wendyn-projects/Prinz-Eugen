@@ -16,7 +16,6 @@ export class Response {
     } 
 }
 
-export abstract class MessageCommand extends Interface.ValueAction<Response> {
+export abstract class DialogCommand<T = any> extends Interface.ValueAction<T> {
 
-    public response: Discord.StringResolvable|Discord.APIMessage;
 }

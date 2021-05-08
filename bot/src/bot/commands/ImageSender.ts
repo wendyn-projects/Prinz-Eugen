@@ -1,10 +1,11 @@
 import * as Discord from 'discord.js'
+import * as Interface from '../../interface'
 import * as MyDiscord from '../../myDiscord'
 import TextFormatter from '../../formatting/TextFormatter'
 import ArrayFormatter from '../../formatting/Array'
 import Presets from '../../server/config/Presets'
 import { MessageGroup, Image, default as GuildConfig } from '../../server/config/GuildConfig'
-import { MessageCommand, Response } from './interface'
+import { Response } from './interface'
 
 class MsgFormatInput {
 
@@ -17,7 +18,7 @@ class MsgFormatInput {
     }
 }
 
-export default class extends MessageCommand {
+export default class extends Interface.ValueAction<Response> {
 
     config: GuildConfig;
     message: Discord.Message;
