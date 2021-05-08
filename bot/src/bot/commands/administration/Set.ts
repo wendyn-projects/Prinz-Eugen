@@ -1,27 +1,14 @@
 import * as Discord from 'discord.js'
-import Configs from '../../config/Configs'
-import GuildConfig from '../../config/GuildConfig'
 import * as Interface from '../../../interface'
+import GuildConfig from '../../../server/config/GuildConfig'
+import SetPrefix from './setters/Prefix'
 
 export default class extends Interface.ActionSelector {
 
-    message: Discord.Message;
+    constructor(config: GuildConfig, message: Discord.Message) {
 
-    constructor(message: Discord.Message) {
-        let config: GuildConfig = Configs.get(message.guild?.id);
-
-        super(config.getPrefix(),
-            command
-        );
-
-        this.message = message;
-    }
-
-    public execute(input?: string[]) {
-        if(input) {
-            super.execute(input);
-        } else {
-            this.execute(Interface.tokenize(this.message.content));
-        }
+        super('set', [
+            new SetPrefix(config, message)
+        ]);
     }
 }

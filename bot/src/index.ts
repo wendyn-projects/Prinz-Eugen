@@ -1,6 +1,11 @@
 import * as DotEnv from 'dotenv'
+
 import * as Discord from 'discord.js'
-import { default as BotCommand, MessageCommand } from './bot/commands/ActionSelector'
+import GuildConfig from './server/config/GuildConfig'
+import GuildConfigs from './server/config/Configs'
+import BotCommand from './bot/commands/ActionSelector'
+import { Response } from './bot/commands/interface'
+
 import ServerCommand from './server/commands/ActionSelector'
 
 DotEnv.config();
@@ -10,10 +15,12 @@ const stdin = process.stdin;
 bot.on('message', async (message: any) => {
 	console.log(`${message.author.username}: ${message.content}`);
 
-    let command = new BotCommand(message);
+    let config: GuildConfig = await GuildConfigs.getOrCreate(message.guild.id);
+
+    let command = new BotCommand(config, message);
     command.execute();
-    if(command.usedAction instanceof MessageCommand)
-        await message.reply(command.usedAction.response);
+    if(command.result instanceof Response)
+        await message.reply(command.result.response);
 });
 
 bot.login(process.env['BOT_TOKEN']);

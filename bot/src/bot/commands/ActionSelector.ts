@@ -1,26 +1,34 @@
 import * as Discord from 'discord.js'
 import * as Interface from '../../interface'
-import { MessageGroup, default as GuildConfig } from '../config/GuildConfig'
-import Configs from '../config/Configs'
+import { MessageGroup, default as GuildConfig } from '../../server/config/GuildConfig'
+import Presets from '../../server/config/Presets'
 import HelpProvider from './help/HelpProvider'
 import ImageSender from './ImageSender'
+import AdminSetters from './administration/Set'
 
 export default class extends Interface.ActionSelector {
 
     message: Discord.Message;
 
-    constructor(message: Discord.Message) {
-        let config: GuildConfig = Configs.get(message.guild?.id);
+    constructor(config: GuildConfig, message: Discord.Message) {
+
         let commands: Interface.ValueAction<any>[] = [
             new HelpProvider(message, config),
         ];
 
         let imgNames = config.getMessageGroups().map((messageGroup: MessageGroup) => messageGroup.getName());
-        config.getPreset()?.forEach((group: MessageGroup) => {
+        Presets.get(config.getPreset())?.forEach((group: MessageGroup) => {
             let name: string = group.getName();
             if(imgNames.indexOf(name) === -1)
                 imgNames.push(name)
         });
+
+        if(true || config.hasAdminRights(message.member)) {
+            let adminCommands: Interface.ValueAction[] = [
+                new AdminSetters(config, message)
+            ];
+            commands = commands.concat(adminCommands);
+        }
 
         super(config.getPrefix(),
             commands.concat(imgNames.map((name: string) => new ImageSender(config, message, name)))

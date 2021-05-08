@@ -22,8 +22,8 @@ export abstract class OptionBase<T> {
 
     protected unparsed?: string[];
     public name: string;
-    public isValid: boolean;
-    public value?: T;
+    public isValid: boolean = false;
+    public result: T;
 
     constructor(name: string) {
         this.name = name;
@@ -55,7 +55,7 @@ export abstract class Option<T> extends OptionBase<T> {
 
     public parse(): void {
         if(this.isValid)
-            this.value = this.parser(this.unparsed);
+            this.result = this.parser(this.unparsed);
     }
 }
 
@@ -66,13 +66,13 @@ export class NumberOption extends Option<number> {
         if(isNaN(output)) {
             return false
         } else {
-            this.value = output;
+            this.result = output;
             return true;
         }
     }
 
     protected parser(): number {
-        return this.value;
+        return this.result;
     }
 }
 
@@ -91,15 +91,17 @@ export class ActionResult extends Array<ActionResult|any> {
     [key: string]: ActionResult|any;
 }
 
-export abstract class ValueAction<T> extends OptionBase<T> {
+export abstract class ValueAction<T = any> extends OptionBase<T> {
 
     public usesName: boolean = true;
     private tokensUsed: number;
     public options: OptionBase<any>[];
     public unparsed: ActionResult;
+    public value: any;
 
     constructor(name: string, options: OptionBase<any>[], usesName: boolean = true) {
         super(name);
+        this.value = {};
         this.options = options;
         this.usesName = usesName;
         this.tokensUsed = options.reduce(
@@ -137,37 +139,29 @@ export abstract class ValueAction<T> extends OptionBase<T> {
         this.unparsed = input;
         this.isValid = 
             (!this.usesName || this.nameCheck()) && 
-            this.validation(this.usesName? input.slice(1): input);
+            this.validation(this.usesName? Array.from(input).slice(1): input);
     }
-
-    protected abstract parser(input: ActionResult) : T;
 
     public parse() {
 
         for(let i = 0; i < this.options.length; i++) {
-            this.options[i].parse();
-            this.unparsed[this.options[i].name] = this.options[i].value;
+            let option = this.options[i];
+            option.parse();
+            this.value[this.options[i].name] = option instanceof ValueAction? 
+                option.value:
+                option.result;
         }
-
-        this.value = this.parser(this.unparsed);
     }
 
-    protected abstract execution(): void;
+    protected abstract execution(): T;
 
     public execute(input?: string[]): void {
-        if(input) {
-            this.validation(input);
+        if(!this.isValid && input) {
+            this.validate(input);
             this.parse();
         }
         if(this.isValid)
-            this.execution()
-    }
-}
-
-export abstract class Action extends ValueAction<ActionResult> {
-
-    protected parser(input: ActionResult) : ActionResult {
-        return input;
+            this.result = this.execution()
     }
 }
 
@@ -178,7 +172,7 @@ export enum SelectionMode {
     BEST_MATCH_LAST,
 }
 
-export class ActionSelector extends Action {
+export class ActionSelector<T = any> extends ValueAction<T> {
 
     public options: ValueAction<any>[];
     public usedAction: ValueAction<any>;
@@ -250,16 +244,19 @@ export class ActionSelector extends Action {
             this.value = this.parser();
     }
 
-    protected execution(): void {
+    protected execution(): T {
+        return this.usedAction.result;
     }
 
-    public execute(input: string[]): void {
+    public execute(input?: string[]): void {
 
-        this.validate(input);
-        this.parse();
+        if(!this.isValid && input) {
+            this.validate(input);
+            this.parse();
+        }
         if(this.isValid) {
             this.usedAction.execute();
-            this.execution()
+            this.result = this.execution();
         }
     }
 }

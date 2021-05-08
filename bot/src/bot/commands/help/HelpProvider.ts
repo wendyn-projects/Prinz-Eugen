@@ -1,7 +1,7 @@
 import * as Discord from 'discord.js'
 import { Option, Action, ActionSelector } from '../../../formatting/HelpFormatting'
-import { MessageCommand } from '../interface'
-import { MessageGroup, Image, default as GuildConfig } from '../../config/GuildConfig'
+import { MessageCommand, Response } from '../interface'
+import { MessageGroup, Image, default as GuildConfig } from '../../../server/config/GuildConfig'
 import formatter from './formatter'
 
 class MsgSender extends Action  {
@@ -47,7 +47,7 @@ export default class extends MessageCommand {
         this.config = config;
     }
 
-    protected execution(): void {
+    protected execution(): Response {
         let embed = new Discord.MessageEmbed();
         embed.setAuthor(
             `${this.message.member.displayName} asked for help`,
@@ -80,6 +80,6 @@ export default class extends MessageCommand {
         ], true, formatter);
         embed.addField('**Other Commands**', otherCommands.toString());
 
-        this.response = embed;
+        return new Response(embed);
     }
 }

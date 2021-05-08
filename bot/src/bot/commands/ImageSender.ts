@@ -2,8 +2,9 @@ import * as Discord from 'discord.js'
 import * as MyDiscord from '../../myDiscord'
 import TextFormatter from '../../formatting/TextFormatter'
 import ArrayFormatter from '../../formatting/Array'
-import { MessageGroup, Image, default as GuildConfig } from '../config/GuildConfig'
-import { MessageCommand } from './interface'
+import Presets from '../../server/config/Presets'
+import { MessageGroup, Image, default as GuildConfig } from '../../server/config/GuildConfig'
+import { MessageCommand, Response } from './interface'
 
 class MsgFormatInput {
 
@@ -33,7 +34,7 @@ export default class extends MessageCommand {
 
     protected validation(input: string[]): boolean {
 
-        let preset = this.config.getPreset()
+        let preset = Presets.get(this.config.getPreset());
         if(preset)
             this.presetGroup = preset.find((group: MessageGroup) => group.getName() === this.name);
 
@@ -53,7 +54,7 @@ export default class extends MessageCommand {
         return this.messageGroup && super.validation(input);
     }
 
-    protected execution(): void {
+    protected execution(): Response {
 
         let images = this.messageGroup.images.filter((image: Image) =>
             image.roles.length === 0 ||
@@ -103,6 +104,6 @@ export default class extends MessageCommand {
 
         embed.setImage(image.link);
 
-        this.response = embed;
+        return new Response(embed);
     }
 }

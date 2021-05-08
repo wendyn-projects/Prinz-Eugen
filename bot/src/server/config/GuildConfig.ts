@@ -1,5 +1,7 @@
+import * as Discord from 'discord.js';
 import * as MyDiscord from '../../myDiscord';
 import Color from '../../formatting/Color'
+import appConfig from '../../appConfig';
 
 export class Image {
 
@@ -81,20 +83,46 @@ export class MessageGroup {
 }
 
 
-export default abstract class GuildConfig {
+export default abstract class {
 
-    public guildId: MyDiscord.Id;
     public hasUnsavedChanges: boolean = false;
 
-    protected preset?: MessageGroup[];
+    private prefix: string;
+    private adminRoles: MyDiscord.Id[];
+    private messageGroups: MessageGroup[];
+    private preset?: string;
 
-    constructor(guildId: MyDiscord.Id) {
-        this.guildId = guildId;
+    constructor(prefix: string = appConfig.bot.defaultPrefix, adminRoles: MyDiscord.Id[] = [], messageGroups: MessageGroup[] = [], preset?: string) {
+        this.prefix = prefix;
+        this.adminRoles = adminRoles;
+        this.messageGroups = messageGroups;
+        this.preset = preset;
     }
 
-    public abstract getPrefix(): string;
-    public abstract getMessageGroups(): MessageGroup[];
-    public getPreset(): MessageGroup[] {
+    protected markForSave() {
+        this.hasUnsavedChanges = true;
+    }
+
+    public getPrefix(): string {
+        return this.prefix;
+    }
+
+    public setPrefix(value: string) {
+        this.prefix = value;
+        this.markForSave();
+    }
+
+    public getMessageGroups(): MessageGroup[] {
+        return this.messageGroups;
+    }
+
+    public getPreset(): string {
         return this.preset;
+    }
+
+    public hasAdminRights(member: Discord.GuildMember): boolean {
+        return member.hasPermission('ADMINISTRATOR') ||
+            member.roles.cache.some((role: Discord.Role) => 
+                this.adminRoles.some((adminRoleId: MyDiscord.Id) => adminRoleId === role.id));
     }
 } 

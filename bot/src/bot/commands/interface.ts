@@ -1,12 +1,22 @@
 import * as Discord from 'discord.js'
 import * as Interface from '../../interface'
 
-export abstract class MessageCommand extends Interface.Action {
-
-    public response: Discord.StringResolvable|Discord.APIMessage;
+export class CommandNameOption extends Interface.StringOption {
+    protected parser(): string {
+        return this.unparsed[0].toLowerCase().replace(/[^a-z0-9]/g, '_');
+    }
 }
 
-export abstract class DialogCommand extends MessageCommand {
+export class Response {
 
-    public dialog: Discord.StringResolvable|Discord.APIMessage;
+    response: Discord.StringResolvable|Discord.APIMessage;
+
+    constructor(response: Discord.StringResolvable|Discord.APIMessage) {
+        this.response = response;
+    } 
+}
+
+export abstract class MessageCommand extends Interface.ValueAction<Response> {
+
+    public response: Discord.StringResolvable|Discord.APIMessage;
 }
