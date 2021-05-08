@@ -15,4 +15,4 @@ npm install
 ```bash
 npm start
 ```
-You can also change some settings in `.src/appConfig.ts` _(like command prefix or where are the server config files stored)_
+You can also change some settings in `.src/appConfig.ts` _(like command prefix or where are the guild config files stored)_
