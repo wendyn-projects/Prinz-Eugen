@@ -82,6 +82,23 @@ export class MessageGroup {
     }
 }
 
+import anime from './presets/anime'
+
+export class Presets {
+
+    public static readonly values = {
+        anime: 'anime'
+    }
+
+    private static presets = new Map<string, Array<MessageGroup>>([
+        [Presets.values.anime, anime]
+    ]);
+
+    public static get(preset: string): MessageGroup[] {
+        return Presets.presets.get(preset);
+    }
+}
+
 
 export default abstract class {
 
@@ -118,6 +135,15 @@ export default abstract class {
 
     public getPreset(): string {
         return this.preset;
+    }
+
+    public setPreset(value?: string): boolean {
+        if(Object.values(Presets.values).some((presetName: string) => presetName === value)) {
+            this.preset = value;
+            this.markForSave();
+            return true;
+        }
+        return false;
     }
 
     public hasAdminRights(member: Discord.GuildMember): boolean {

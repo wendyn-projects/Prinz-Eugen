@@ -22,8 +22,8 @@ class MessageSelector extends ActionSelector {
 }
 
 class Messages {
-    available: Array<MsgSender> = new Array<MsgSender>();
-    unavailable: Array<MsgSender> = new Array<MsgSender>();
+    available: MsgSender[] = [];
+    unavailable: MsgSender[] = [];
 }
 
 export class HelpGroup {

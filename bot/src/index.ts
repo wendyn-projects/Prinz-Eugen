@@ -13,14 +13,17 @@ export const bot = new Discord.Client();
 const stdin = process.stdin;
 
 bot.on('message', async (message: any) => {
-	console.log(`${message.author.username}: ${message.content}`);
+    if(message.member.id !== message.guild.me.id) {
+        console.log(`${message.author.username}: ${message.content}`);
 
-    let config: GuildConfig = await GuildConfigs.getOrCreate(message.guild.id);
+        let config: GuildConfig = await GuildConfigs.getOrCreate(message.guild.id);
 
-    let command = new BotCommand(config, message);
-    command.execute();
-    if(command.result instanceof Response)
-        await message.reply(command.result.response);
+        let command = new BotCommand(config, message);
+        command.execute();
+        let result = await command.result;
+        if(result instanceof Response)
+            await message.reply(result.response);
+    }
 });
 
 bot.login(process.env['BOT_TOKEN']);

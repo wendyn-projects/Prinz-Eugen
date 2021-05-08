@@ -21,7 +21,7 @@ export default class extends Interface.ValueAction<Response> {
                 `${this.message.member.displayName} has changed preffix to ${this.value.prefix}`,
                 this.message.author.avatarURL(),
                 'https://discord.com/channels/@me/'
-            )
+            ).setColor(this.message.member.displayHexColor)
         );
     }
 }

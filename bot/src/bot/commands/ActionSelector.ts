@@ -1,9 +1,8 @@
 import * as Discord from 'discord.js'
 import * as Interface from '../../interface'
-import { MessageGroup, default as GuildConfig } from '../../server/config/GuildConfig'
-import Presets from '../../server/config/Presets'
-import HelpProvider from './help/HelpProvider'
+import { MessageGroup, Presets, default as GuildConfig } from '../../server/config/GuildConfig'
 import ImageSender from './ImageSender'
+import HelpProvider from './help/HelpProvider'
 import AdminSetters from './administration/Set'
 
 export default class extends Interface.ActionSelector {

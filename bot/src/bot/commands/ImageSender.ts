@@ -3,8 +3,7 @@ import * as Interface from '../../interface'
 import * as MyDiscord from '../../myDiscord'
 import TextFormatter from '../../formatting/TextFormatter'
 import ArrayFormatter from '../../formatting/Array'
-import Presets from '../../server/config/Presets'
-import { MessageGroup, Image, default as GuildConfig } from '../../server/config/GuildConfig'
+import { MessageGroup, Image, Presets, default as GuildConfig } from '../../server/config/GuildConfig'
 import { Response } from './interface'
 
 class MsgFormatInput {

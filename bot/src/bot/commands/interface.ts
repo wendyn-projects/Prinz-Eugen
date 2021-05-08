@@ -16,6 +16,6 @@ export class Response {
     } 
 }
 
-export abstract class DialogCommand<T = any> extends Interface.ValueAction<T> {
-
+export class MessageDialog {
+    
 }

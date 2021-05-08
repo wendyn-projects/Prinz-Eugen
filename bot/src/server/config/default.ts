@@ -1,11 +1,10 @@
 import appConfig from '../../appConfig'
-import GuildConfig from './GuildConfig'
-import Presets from './Presets'
+import { Presets, default as GuildConfig } from './GuildConfig'
 
 class DefaultConfig extends GuildConfig {
 
     constructor() {
-        super(appConfig.bot.defaultPrefix, [], [], Presets.anime);
+        super(appConfig.bot.defaultPrefix, [], [], Presets.values.anime);
     }
 }
 
