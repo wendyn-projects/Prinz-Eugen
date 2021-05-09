@@ -22,7 +22,7 @@ export default class extends Interface.ActionSelector {
                 imgNames.push(name)
         });
 
-        if(true || config.hasAdminRights(message.member)) {
+        if(config.hasAdminRights(message.member)) {
             let adminCommands: Interface.ValueAction[] = [
                 new AdminSetters(config, message)
             ];

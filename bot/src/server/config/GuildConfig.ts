@@ -147,7 +147,7 @@ export default abstract class {
     }
 
     public hasAdminRights(member: Discord.GuildMember): boolean {
-        return member.hasPermission('ADMINISTRATOR') ||
+        return member.hasPermission(['ADMINISTRATOR', 'MANAGE_GUILD']) ||
             member.roles.cache.some((role: Discord.Role) => 
                 this.adminRoles.some((adminRoleId: MyDiscord.Id) => adminRoleId === role.id));
     }
