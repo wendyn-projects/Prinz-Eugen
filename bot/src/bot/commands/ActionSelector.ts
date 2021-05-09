@@ -4,6 +4,7 @@ import { MessageGroup, Presets, default as GuildConfig } from '../../server/conf
 import ImageSender from './ImageSender'
 import HelpProvider from './help/HelpProvider'
 import AdminSetters from './administration/Set'
+import AdminShowers from './administration/Show'
 
 export default class extends Interface.ActionSelector {
 
@@ -24,7 +25,8 @@ export default class extends Interface.ActionSelector {
 
         if(config.hasAdminRights(message.member)) {
             let adminCommands: Interface.ValueAction[] = [
-                new AdminSetters(config, message)
+                new AdminSetters(config, message),
+                new AdminShowers(config, message)
             ];
             commands = commands.concat(adminCommands);
         }
