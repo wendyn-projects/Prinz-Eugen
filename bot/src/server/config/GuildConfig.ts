@@ -129,6 +129,15 @@ export default abstract class {
         this.markForSave();
     }
 
+    public getAdminRoles(): MyDiscord.Id[] {
+        return this.adminRoles;
+    }
+
+    public addAdminRole(role: MyDiscord.Id) {
+        this.adminRoles.push(role);
+        this.markForSave();
+    }
+
     public getMessageGroups(): MessageGroup[] {
         return this.messageGroups;
     }
