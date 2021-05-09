@@ -1,8 +1,7 @@
 import * as Discord from 'discord.js'
 import * as Interface from '../../../../interface'
-import * as MyDiscord from '../../../../myDiscord'
 import { Presets, default as GuildConfig } from '../../../../server/config/GuildConfig'
-import { CommandNameOption, Response } from '../../interface'
+import { CommandNameOption, Response, MessageDialog } from '../../interface'
 
 export default class SetPreset extends Interface.ValueAction<Promise<Response>> {
 
@@ -34,19 +33,11 @@ export default class SetPreset extends Interface.ValueAction<Promise<Response>> 
             )
         )
 
-        for(let i = 0; i < presets.length; i++) {
-            await dialog.react(SetPreset.reactions[i]);
-        }
-
-        let preset;
-
-        await dialog.awaitReactions(this.reactionFilter, { max: 1, time: 10000, errors: ['time'] }).
-            then((reactions) => {
-                let reaction = reactions.first();
-                let index = SetPreset.reactions.indexOf(reaction.emoji.name)
-                if(index > -1 && index < presets.length)
-                    preset = presets[index];
-            }).catch(() => preset = null);
+        let preset = await MessageDialog.create(
+            dialog,
+            MessageDialog.optionsFromArrays(SetPreset.reactions, presets),
+            this.message.author.id
+        );
 
         dialog.delete();
 
