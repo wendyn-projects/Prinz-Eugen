@@ -102,7 +102,7 @@ export class Presets {
 
 export default abstract class {
 
-    public hasUnsavedChanges: boolean = false;
+    public _hasUnsavedChanges: boolean = false;
 
     private prefix: string;
     private adminRoles: MyDiscord.Id[];
@@ -117,7 +117,7 @@ export default abstract class {
     }
 
     protected markForSave() {
-        this.hasUnsavedChanges = true;
+        this._hasUnsavedChanges = true;
     }
 
     public getPrefix(): string {
