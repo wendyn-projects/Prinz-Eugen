@@ -25,7 +25,10 @@ class Tickles extends MessageGroup {
     constructor(images: Image[]) {
         super('tickle', [
                 '${from} tickles ${to}',
-                '${from} tickles ${to} to death'
+                '${from} tickles ${to} to death',
+                '${to} is being tickled by ${from}',
+                'I wonder how ticklish are you ¬‿¬',
+                "Let's try how much you can take...",
             ], 
             images, 
             '\nAre you ticklish?' +
@@ -39,6 +42,7 @@ class Teases extends MessageGroup {
     constructor(images: Image[]) {
         super('tease', [
                 "So... It's gonna be like that you say...",
+                'Sooooo...',
                 '${to} is getting teased by ${from}'
             ], images, "\nYou like that, don't you? ¬‿¬");
     }
@@ -47,8 +51,9 @@ class Teases extends MessageGroup {
 class Laughs extends MessageGroup {
     constructor(images: Image[]) {
         super('laughat', [
-                "${from} laughs at ${to}",
-                "${from} is loosing it"
+                '${from} laughs at ${to}',
+                '${from} is loosing it',
+                "I'm loosing it... I can't baAahaHaA-"
             ], images, "\nYou are so funny senpai XD");
     } 
 }
@@ -65,7 +70,8 @@ class Bullies extends MessageGroup {
 class Boobas extends MessageGroup {
     constructor(images: Image[]) {
         super('booba', [
-                "Huge, aren't they?  ¬‿¬"
+                "Huge, aren't they?  ¬‿¬",
+                'Look how they can bounce (ﾉ ﾟ ▽ ﾟ)ﾉ'
             ], images, "\nHuge, aren't they? ¬‿¬");
     } 
 }
@@ -83,9 +89,9 @@ export default [
         new Image('https://thumbs.gfycat.com/HatefulSilverIndochinesetiger-size_restricted.gif'), //Kaguya-sama wa Kokurasetai - Chika
         new Image('https://media1.tenor.com/images/c95f9a729a3a866cbc559b008aaeb2ed/tenor.gif?itemid=17024567'), //Kaguya-sama wa Kokurasetai - Chika
         new Image('https://64.media.tumblr.com/8a5d544e8fd7fcc0edffa2517099029d/tumblr_n1vvwjzLh91tnrr0fo1_500.gif'),
-        new Image('https://i.imgur.com/5YyCxFx.gif'),
-        new Image('https://i.imgur.com/wdnMWGD.gif'), //Hitsugime no Chaika
-        new Image('https://media2.giphy.com/media/kErrCYo6dOfC9KEkxV/giphy.gif'), //Toradora (slap)
+        new Image('https://i.imgur.com/5YyCxFx.gif', ['snap out of it']),
+        new Image('https://i.imgur.com/wdnMWGD.gif', ['snap out of it']), //Hitsugime no Chaika
+        new Image('https://media2.giphy.com/media/kErrCYo6dOfC9KEkxV/giphy.gif', ['snap out of it']), //Toradora (slap?)
 
     ]),
     new Tickles([
