@@ -76,20 +76,31 @@ export default [
         new Image('https://media1.tenor.com/images/2a4b5698e09013d6e4c94d4c0d9debb2/tenor.gif'), //Overlord - Nabe Gama
         new Image('https://media1.tenor.com/images/bc8d9395166b82df05d590459f184f2d/tenor.gif'), //RWBY - Neopolitan
         new Image('https://i.imgur.com/FN0aYXh.gif'),
+        new Image('https://64.media.tumblr.com/0a6d1c364a8b6f716b925e2288240484/26c589a8e9a95819-41/s400x600/340482c16f30b11843740984f1572a9fd911957f.gif'),
+        new Image('https://i.imgur.com/V0xUOxi.gif')
     ]),
     new BeatUps([
         new Image('https://thumbs.gfycat.com/HatefulSilverIndochinesetiger-size_restricted.gif'), //Kaguya-sama wa Kokurasetai - Chika
         new Image('https://media1.tenor.com/images/c95f9a729a3a866cbc559b008aaeb2ed/tenor.gif?itemid=17024567'), //Kaguya-sama wa Kokurasetai - Chika
         new Image('https://64.media.tumblr.com/8a5d544e8fd7fcc0edffa2517099029d/tumblr_n1vvwjzLh91tnrr0fo1_500.gif'),
+        new Image('https://i.imgur.com/5YyCxFx.gif'),
+        new Image('https://i.imgur.com/wdnMWGD.gif'), //Hitsugime no Chaika
+        new Image('https://media2.giphy.com/media/kErrCYo6dOfC9KEkxV/giphy.gif'), //Toradora (slap)
+
     ]),
     new Tickles([
         new Image('https://media1.tenor.com/images/fcbded4ce66ab01317ee009a1aa44404/tenor.gif'),
         new Image('https://media1.tenor.com/images/ae7fc8d4dffe5ca4dea5eaeee5fb8abd/tenor.gif'),
         new Image('https://78.media.tumblr.com/ba913c0d21916e57b846e93b783cab39/tumblr_o505jxtnWk1vpbklao4_500.gif'),
-        new Image('https://i.imgur.com/VD8nvU5.gif'),
+        new Image('https://i.imgur.com/VD8nvU5.gif'), //Toradora
         new Image('https://78.media.tumblr.com/345313d8ba3c9128a03bd3e350cee44f/tumblr_inline_pd97s5xBcN1vrbftj_540.gif'), //Toradora
         new Image('https://64.media.tumblr.com/f998ef7b597536621c5aaa1d73dea5cd/128c7ac960733209-1a/s400x600/aaaf750a96c861fe86eaf3fbb437cbc47f2b8e98.gif'), //Azur Lane
         new Image('https://thumbs.gfycat.com/DaringGrossJellyfish-size_restricted.gif'), //Urara Meirochou
+        new Image('https://64.media.tumblr.com/b94bf58f13b4fbbfd7b56bc8e7b1c311/tumblr_ocf8z5BhRG1vpbklao4_r1_500.gif'),
+        new Image('https://media.giphy.com/media/2RtHSNy8ieTexlEwAq/giphy.gif'), //Soukou Musume Senki (LBX Girls)
+        new Image('https://64.media.tumblr.com/bd95255f8b65c651dff3f3e1d5b0d86c/73d95236cb90aeac-86/s500x750/5f99685061cb82e0bd042989ca19440eed8c7eb1.gif'),
+        new Image('https://64.media.tumblr.com/b94bf58f13b4fbbfd7b56bc8e7b1c311/tumblr_ocf8z5BhRG1vpbklao4_r1_500.gif'),
+        new Image('https://64.media.tumblr.com/07bd3e63980e22333ebb40b8718524f6/tumblr_ocf8z5BhRG1vpbklao1_500.gif')
     ]),
     new Teases([
         new Image('https://media1.tenor.com/images/c33f9eb207d87ec44a72207120985b8d/tenor.gif'), //Nagatoro
@@ -115,5 +126,6 @@ export default [
         new Image('https://64.media.tumblr.com/f51f4852bbe8ee27c43dbbcaf91363ff/tumblr_pul8fpNn4s1yofbauo1_500.gif'), //Kobayashi - Kobayashi/Tohru
         new Image('https://64.media.tumblr.com/29733b5cbcd265fc8b1356973f331010/tumblr_nf2t25E2be1t0g0dno1_400.gif'),
         new Image('https://i.pinimg.com/originals/81/de/c4/81dec4de86e9c87ecde04cec59c524b8.gif'), //Konosuba Chomosuke/Wiz
+        new Image('https://i.imgur.com/GTtAOf1.gif'), //Steinsgate
     ])
 ];
