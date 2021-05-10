@@ -17,7 +17,7 @@ class Bonks extends MessageGroup {
 
 class BeatUps extends MessageGroup {
     constructor(images: Image[]) {
-        super('beatup', [ '${from} started beating up ${to}'], images, "\nYou did what? -__-");
+        super('beatup', ['${from} started beating up ${to}'], images, "\nYou did what? -__-");
     }
 }
 
@@ -61,8 +61,9 @@ class Laughs extends MessageGroup {
 class Bullies extends MessageGroup {
     constructor(images: Image[]) {
         super('bully', [
-                "${from} bullies ${to}",
-                "Oh my, what do we have here ¬‿¬"
+                '${from} bullies ${to}',
+                'Oh my, what do we have here ¬‿¬',
+                'What a sorry thing is that?..'
             ], images, "\nNaughty, are we? ꓶ‿ꓶ");
     }
 }
@@ -109,7 +110,6 @@ export default [
     ]),
     new Teases([
         new Image('https://media1.tenor.com/images/c33f9eb207d87ec44a72207120985b8d/tenor.gif'), //Nagatoro
-        new Image('https://media1.tenor.com/images/e01d7830c5a457aaba21667997448ab3/tenor.gif'), //Kakegurui
         new Image('https://64.media.tumblr.com/c70d2e2b8ef340f5d27b1520dffc92c3/tumblr_mpgubnjLpb1rrzwfeo1_400.gif'), //Rozen Maiden - suigintou
     ]),
     new Laughs([
@@ -117,7 +117,8 @@ export default [
         new Image('https://i.imgur.com/W3q8qqp.gif', ['Oh my... What do we have here ¬‿¬'], false), //Kobayashi - Tohru
         new Image('https://i.imgur.com/n3lBcLb.gif', ["Heh.. AahaAhahhh- I just can't..."], false), //Konosuba - Aqua
         new Image('https://i.imgur.com/lKp36T8.gif'), //Konosuba - Aqua
-        new Image('https://i.imgur.com/QBqupzo.gif', ['Pffff- really?'], false),
+        new Image('https://i.imgur.com/QBqupzo.gif', ['Pffff- really?'], false), //Evangelion
+        new Image('https://static.tumblr.com/c36fc2595f59df28ce876970332df8b6/utm1oo4/Dltp8zx53/tumblr_static_filename_2048_v2.gif', ['Heh.. bAAaahaaAAhahhh-'],false), //DITF - 02
     ]),
     new Bullies([
         new Image('https://thumbs.gfycat.com/SilkyResponsibleGemsbuck-size_restricted.gif'),
@@ -126,6 +127,7 @@ export default [
         new Image('https://64.media.tumblr.com/4c463c7bf7dfc8c932f51528f1d8f6c7/tumblr_o31c8y0bUY1u6zbi9o2_400.gif'), //Konosuba - Kazuma/Megumin
         new Image('https://pa1.narvii.com/5812/28a21e935edecce130da6a2b08ba1fb26929eb5d_hq.gif'),
         new Image('https://lordbordenblog.files.wordpress.com/2018/09/omake-gif-anime-saekano-episode-10-michiru-body-hold.gif'),
+        new Image('https://media1.tenor.com/images/e01d7830c5a457aaba21667997448ab3/tenor.gif'), //Kakegurui
     ]),
     new Boobas([
         new Image('https://64.media.tumblr.com/f51f4852bbe8ee27c43dbbcaf91363ff/tumblr_pul8fpNn4s1yofbauo1_500.gif'), //Kobayashi - Kobayashi/Tohru
