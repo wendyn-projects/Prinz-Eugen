@@ -99,7 +99,6 @@ export default [
         new Image('https://64.media.tumblr.com/b94bf58f13b4fbbfd7b56bc8e7b1c311/tumblr_ocf8z5BhRG1vpbklao4_r1_500.gif'),
         new Image('https://media.giphy.com/media/2RtHSNy8ieTexlEwAq/giphy.gif'), //Soukou Musume Senki (LBX Girls)
         new Image('https://64.media.tumblr.com/bd95255f8b65c651dff3f3e1d5b0d86c/73d95236cb90aeac-86/s500x750/5f99685061cb82e0bd042989ca19440eed8c7eb1.gif'),
-        new Image('https://64.media.tumblr.com/b94bf58f13b4fbbfd7b56bc8e7b1c311/tumblr_ocf8z5BhRG1vpbklao4_r1_500.gif'),
         new Image('https://64.media.tumblr.com/07bd3e63980e22333ebb40b8718524f6/tumblr_ocf8z5BhRG1vpbklao1_500.gif')
     ]),
     new Teases([
