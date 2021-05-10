@@ -103,6 +103,7 @@ export class Presets {
 export default abstract class {
 
     public _hasUnsavedChanges: boolean = false;
+    public _uses: Map<string, number> = new Map<string, number>();
 
     private prefix: string;
     private adminRoles: MyDiscord.Id[];

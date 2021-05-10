@@ -64,7 +64,13 @@ export default class extends Interface.ValueAction<Response> {
         if(this.presetGroup)
             images.concat(this.presetGroup.images);
 
-        let image: Image = images[Math.floor(Math.random() * this.messageGroup.images.length)];
+        let imageId = this.config._uses.get(this.name);
+        imageId = imageId?
+            (imageId + 1) % images.length:
+            Math.floor(Math.random() * images.length);
+        this.config._uses.set(this.name, imageId);
+
+        let image: Image = images[imageId];
         let texts: string[] = image.texts;
 
         if(image.usesDefaultTexts) {

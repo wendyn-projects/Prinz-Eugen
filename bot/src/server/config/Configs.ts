@@ -4,6 +4,7 @@ import appConfig from '../../appConfig'
 import * as MyDiscord from '../../myDiscord';
 import GuildConfig from './GuildConfig'
 import defaultConfig from './default'
+import emptyConfig from './empty'
 
 export default class Configs {
     private static guilds: Map<MyDiscord.Id, GuildConfig> = new Map<string, GuildConfig>();
@@ -13,9 +14,9 @@ export default class Configs {
         if(config) {
             return config;
         } else {
-            let guildConfig = path.join(appConfig.server.guildConfigsDir, guildId.toString() + '.json');
-            return fs.existsSync(guildConfig)?
-                Object.setPrototypeOf(JSON.parse(await fs.promises.readFile( guildConfig, "utf8")), GuildConfig.prototype):
+            let guildConfigPath = path.join(appConfig.server.guildConfigsDir, guildId.toString() + '.json');
+            return fs.existsSync(guildConfigPath)?
+                Object.assign(emptyConfig, JSON.parse(await fs.promises.readFile(guildConfigPath, "utf8"))):
                 null;
         }
     }
