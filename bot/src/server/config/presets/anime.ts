@@ -106,8 +106,8 @@ export default [
     new Bullies([
         new Image('https://thumbs.gfycat.com/SilkyResponsibleGemsbuck-size_restricted.gif'),
         new Image('https://i.gifer.com/78nU.gif'),
-        new Image('https://64.media.tumblr.com/1f042c0e66456bc9ff3dcc645709a393/tumblr_o4hx8yQijn1su8acao2_400.gifv'), //Konosuba - Kazuma/Megumin
-        new Image('https://64.media.tumblr.com/4c463c7bf7dfc8c932f51528f1d8f6c7/tumblr_o31c8y0bUY1u6zbi9o2_400.gifv'), //Konosuba - Kazuma/Megumin
+        new Image('https://64.media.tumblr.com/1f042c0e66456bc9ff3dcc645709a393/tumblr_o4hx8yQijn1su8acao2_400.gif'), //Konosuba - Kazuma/Megumin
+        new Image('https://64.media.tumblr.com/4c463c7bf7dfc8c932f51528f1d8f6c7/tumblr_o31c8y0bUY1u6zbi9o2_400.gif'), //Konosuba - Kazuma/Megumin
         new Image('https://pa1.narvii.com/5812/28a21e935edecce130da6a2b08ba1fb26929eb5d_hq.gif'),
         new Image('https://lordbordenblog.files.wordpress.com/2018/09/omake-gif-anime-saekano-episode-10-michiru-body-hold.gif'),
     ]),
