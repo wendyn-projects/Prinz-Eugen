@@ -39,7 +39,7 @@ export default class Configs {
             if(config._hasUnsavedChanges)
                 await fs.promises.writeFile(
                     path.join(appConfig.server.guildConfigsDir, guildId.toString() + '.json'), 
-                    JSON.stringify(config, (key, value) => key === 'hasUnsavedChanges'? undefined: value)
+                    JSON.stringify(config, (key, value) => key[0] === '_'? undefined: value)
                 );
         }))
     }
