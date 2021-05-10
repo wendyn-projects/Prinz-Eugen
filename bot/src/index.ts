@@ -28,10 +28,10 @@ bot.on('message', async (message: any) => {
 
 bot.login(process.env['BOT_TOKEN']);
 
-stdin.on('data', (input: Buffer) => {
+stdin.on('data', async (input: Buffer) => {
     let text = input.toString();
     let command = new ServerCommand(text);
-    command.execute();
+    await command.execute();
 });
 
 stdin.resume();

@@ -8,8 +8,9 @@ export class Exit extends Interface.ValueAction {
         super('exit', []);
     }
     
-    protected execution() {
+    protected async execution() {
         bot.destroy();
-        Configs.saveChanges().then(() => process.exit());
+        await Configs.saveChanges();
+        process.exit()
     }
 }

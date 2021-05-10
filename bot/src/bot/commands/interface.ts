@@ -23,7 +23,7 @@ export class MessageDialog {
     public static async create(message: Discord.Message, options: Map<string, any>, author?: MyDiscord.Id, timeout: number = 10000): Promise<any> {
         let result;
 
-        //can't await map.forEach
+        //can't do async Map.prototype.forEach sequentially 
         for(let emojiName of Array.from(options.keys()))
             await message.react(emojiName)
 
