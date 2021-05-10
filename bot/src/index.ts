@@ -13,7 +13,7 @@ export const bot = new Discord.Client();
 const stdin = process.stdin;
 
 bot.on('message', async (message: any) => {
-    if(message.member.id !== message.guild.me.id) {
+    if(!message.author.bot && message.member && message.member !== message.guild.me.id) {
         console.log(`${message.author.username}: ${message.content}`);
 
         let config: GuildConfig = await GuildConfigs.getOrCreate(message.guild.id);

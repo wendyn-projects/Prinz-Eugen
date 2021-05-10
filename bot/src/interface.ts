@@ -79,7 +79,7 @@ export class NumberOption extends Option<number> {
 export class StringOption extends Option<string> {
 
     protected validation(input: string[]): boolean {
-        return true;
+        return input.length !== 0;
     }
 
     protected parser(): string {
@@ -121,15 +121,14 @@ export abstract class ValueAction<T = any> extends OptionBase<T> {
         let isValidTmp = true;
         let tokenId = 0;
 
-        for(let i = 0; i < this.options.length && tokenId < input.length; i++) {
+        for(let i = 0; i < this.options.length && isValidTmp; i++) {
 
             this.options[i].validate(input.slice(tokenId));
 
-            tokenId +=  this.options[i].getTokensUsed();
-            isValidTmp &&= this.options[i].isValid;
+            let tokensUsed = this.options[i].getTokensUsed();
+            tokenId += tokensUsed;
+            isValidTmp &&= tokenId >= input.length && this.options[i].isValid;
 
-            if(!isValidTmp)
-                break;
         }
 
         return isValidTmp && tokenId <= input.length;
@@ -194,7 +193,7 @@ export class ActionSelector<T = any> extends ValueAction<T> {
         case SelectionMode.LAST:
             for(let i = 0; i < this.options.length; i++) {
                 action = this.options[i];
-                action.validate(input)
+                action.validate(input);
                 if(action.isValid)
                     this.usedAction = action;
             }
@@ -202,7 +201,7 @@ export class ActionSelector<T = any> extends ValueAction<T> {
         case SelectionMode.BEST_MATCH_FIRST:
             for(let i = 0; i < this.options.length; i++) {
                 action = this.options[i];
-                action.validate(input)
+                action.validate(input);
                 if(action.isValid && (tokenCount = action.getTokensUsed()) > prevTokenCount) {
                     this.usedAction = action;
                     prevTokenCount = tokenCount;
@@ -212,7 +211,7 @@ export class ActionSelector<T = any> extends ValueAction<T> {
         case SelectionMode.BEST_MATCH_FIRST:
             for(let i = 0; i < this.options.length; i++) {
                 action = this.options[i];
-                action.validate(input)
+                action.validate(input);
                 if(action.isValid && (tokenCount = action.getTokensUsed()) >= prevTokenCount) {
                     this.usedAction = action;
                     prevTokenCount = tokenCount;
@@ -222,7 +221,7 @@ export class ActionSelector<T = any> extends ValueAction<T> {
         default:
             for(let i = 0; i < this.options.length; i++) {
                 action = this.options[i];
-                action.validate(input)
+                action.validate(input);
                 if(action.isValid) {
                     this.usedAction = action;
                     break;
