@@ -76,7 +76,7 @@ export default class extends Interface.ValueAction<Response> {
         let text: string = texts.length > 0?
             new TextFormatter(texts[Math.floor(Math.random() * texts.length)]).
                 toString(new MsgFormatInput(
-                    this.message.author.username, 
+                    this.message.member.displayName, 
                     ArrayFormatter.createList(this.message.mentions.members.array().map(
                         (member: Discord.GuildMember) =>
                             this.message.author.id == member.id?
