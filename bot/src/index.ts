@@ -13,7 +13,7 @@ export const bot = new Discord.Client();
 const stdin = process.stdin;
 
 bot.on('message', async (message: any) => {
-    if(!message.author.bot && message.member && message.member !== message.guild.me.id) {
+    if(!message.author.bot && message.member) {
         console.log(`\x1b[33m${message.guild.name}\x1b[0m/\x1b[34m${message.channel.name}\x1b[0m/\x1b[31m${message.author.username}\x1b[0m: ${message.content}`.replace(/[^\x00-\x7F]/g, '.'));
 
         let config: GuildConfig = await GuildConfigs.getOrCreate(message.guild.id);
