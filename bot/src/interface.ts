@@ -6,14 +6,14 @@ export function tokenize(input: string) : string[] {
     let tokenVal: string;
     //RegEx.exec is...
     while(token = tokenizer.exec(input)) {
-        tokenVal = null;
+        tokenVal = token[0];
         for(let i = 1; i < token.length; i++) {
-            if(token[i]) {
+            if(token[i] !== undefined) {
                 tokenVal = token[i];
                 break;
             }
         }
-        tokenVals.push(tokenVal ?? token[0]);
+        tokenVals.push(tokenVal);
     }
     return tokenVals;
 }

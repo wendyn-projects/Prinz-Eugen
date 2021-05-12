@@ -32,9 +32,10 @@ export default class extends Interface.ActionSelector {
             ];
             commands = commands.concat(adminCommands);
         }
-
-        super(config.getPrefix(),
-            commands.concat(imgNames.map((name: string) => new ImageSender(config, message, name)))
+        let prefix = config.getPrefix();
+        super(prefix,
+            commands.concat(imgNames.map((name: string) => new ImageSender(config, message, name))),
+            prefix.length > 0
         );
 
         this.message = message;
