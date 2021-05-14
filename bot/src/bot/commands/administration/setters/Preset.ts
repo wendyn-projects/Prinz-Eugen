@@ -8,7 +8,7 @@ export default class SetPreset extends Interface.ValueAction<Promise<Response>> 
     config: GuildConfig;
     message: Discord.Message;
 
-    static readonly reactions = [ '1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣', '🔟' ];
+    static readonly reactions = [ '❌', '1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣', '🔟' ];
 
     constructor(config: GuildConfig, message: Discord.Message) {
         super('preset', []);
@@ -25,6 +25,8 @@ export default class SetPreset extends Interface.ValueAction<Promise<Response>> 
         let presets = Object.values(Presets.values);
         if(presets.length > SetPreset.reactions.length)
             presets.slice(0, SetPreset.reactions.length);
+
+        presets = [''].concat(presets);
 
         let dialog = await this.message.reply(new Discord.MessageEmbed().
             setColor(this.message.guild.me.displayHexColor).
@@ -43,9 +45,14 @@ export default class SetPreset extends Interface.ValueAction<Promise<Response>> 
 
         let response = new Discord.MessageEmbed();
 
-        if(preset) {
-            this.config.setPreset(preset);
-            response.setDescription(`${this.message.member.displayName} has changed preset to ${this.config.getPreset()}`);
+        if(preset !== null) {
+            if(preset) {
+                this.config.setPreset(preset);
+                response.setDescription(`${this.message.member.displayName} has changed guild's preset to ${this.config.getPreset()}`);
+            } else {
+                this.config.setPreset(null);
+                response.setDescription(`${this.message.member.displayName} has removed guild's preset`);
+            }
         } else {
             response.setDescription('no preset was set');
         }

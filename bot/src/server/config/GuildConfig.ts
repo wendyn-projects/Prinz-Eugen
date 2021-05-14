@@ -148,7 +148,7 @@ export default abstract class {
     }
 
     public setPreset(value?: string): boolean {
-        if(Object.values(Presets.values).some((presetName: string) => presetName === value)) {
+        if(Object.values(Presets.values).some((presetName: string) => presetName === value) || value === null) {
             this.preset = value;
             this.markForSave();
             return true;
@@ -161,4 +161,4 @@ export default abstract class {
             member.roles.cache.some((role: Discord.Role) => 
                 this.adminRoles.some((adminRoleId: MyDiscord.Id) => adminRoleId === role.id));
     }
-} 
+}
