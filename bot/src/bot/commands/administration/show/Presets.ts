@@ -14,13 +14,11 @@ export default class extends Interface.ValueAction<Response> {
 
     protected execution(): Response {
 
-        return new Response(new Discord.MessageEmbed().setAuthor(
+        return new Response(new Discord.MessageEmbed().addField(
                 `${this.message.member.displayName} asked to show available presets`,
-                this.message.author.avatarURL(),
-                'https://discord.com/channels/@me/'
-            ).addField('Available Presets', Object.values(Presets.values).map((preset: string) => 
-                '`' + preset + '`').join(' ')
-            ).setColor(this.message.member.displayHexColor)
+                Object.values(Presets.values).map((preset: string) => 
+                    '`' + preset + '`').join(' ')
+            ).setColor(this.message.guild.me.displayHexColor)
         );
     }
 }

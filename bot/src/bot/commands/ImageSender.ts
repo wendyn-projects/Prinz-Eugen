@@ -79,9 +79,9 @@ export default class extends Interface.ValueAction<Response> {
                 texts = texts.concat(this.presetGroup.defaultTexts)
         }
 
+        let textFormat: TextFormatter = new TextFormatter(texts[Math.floor(Math.random() * texts.length)]);
         let text: string = texts.length > 0?
-            new TextFormatter(texts[Math.floor(Math.random() * texts.length)]).
-                toString(new MsgFormatInput(
+            textFormat.toString(new MsgFormatInput(
                     this.message.member.displayName, 
                     ArrayFormatter.createList(this.message.mentions.members.array().map(
                         (member: Discord.GuildMember) =>
@@ -92,20 +92,27 @@ export default class extends Interface.ValueAction<Response> {
                         'you'
                     ))):
             '';
-
-
+        
+        let isFromBot = textFormat.getKeys().includes('from');
         let embed = new Discord.MessageEmbed();
-        embed.setAuthor(
-            text,
-            this.message.author.avatarURL(),
-            'https://discord.com/channels/@me/'
-        );
+
+        if(isFromBot) {
+            embed.setDescription(text);
+        } else {
+            embed.setAuthor(
+                text,
+                this.message.author.avatarURL(),
+                'https://discord.com/channels/@me/'
+            );
+        }
 
         embed.setColor(
             image.getColor() ??
             this.messageGroup.getColor() ??
             this.presetGroup?.getColor() ??
-            this.message.member.displayHexColor
+            isFromBot?
+                this.message.guild.me.displayHexColor:
+                this.message.member.displayHexColor
         );
 
         embed.setImage(image.link);

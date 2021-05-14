@@ -17,11 +17,9 @@ export default class extends Interface.ValueAction<Response> {
     protected execution(): Response {
         this.config.setPrefix(this.value.prefix)
 
-        return new Response(new Discord.MessageEmbed().setAuthor(
+        return new Response(new Discord.MessageEmbed().setDescription(
                 `${this.message.member.displayName} has changed preffix to ${this.value.prefix}`,
-                this.message.author.avatarURL(),
-                'https://discord.com/channels/@me/'
-            ).setColor(this.message.member.displayHexColor)
+            ).setColor(this.message.guild.me.displayHexColor)
         );
     }
 }
