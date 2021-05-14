@@ -18,6 +18,10 @@ export function tokenize(input: string) : string[] {
     return tokenVals;
 }
 
+export function separateByPipe(input: string) : string[] {
+    return input.split(/\|/);
+}
+
 export abstract class OptionBase<T> {
 
     protected unparsed?: string[];
@@ -113,7 +117,7 @@ export abstract class ValueAction<T = any> extends OptionBase<T> {
     }
 
     protected nameCheck(): boolean {
-        return this.unparsed[0] === this.name;
+        return separateByPipe(this.name).some((name: string) => name === this.unparsed[0]);
     }
 
     protected validation(input: string[]): boolean {

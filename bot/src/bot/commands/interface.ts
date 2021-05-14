@@ -5,7 +5,7 @@ import * as MyDiscord from '../../myDiscord'
 export class CommandNameOption extends Interface.StringOption {
 
     protected parser(): string {
-        return this.unparsed[0].toLowerCase().replace(/[^a-z0-9]/g, '_');
+        return this.unparsed[0].toLowerCase().replace(/[^a-z0-9|]/g, '_');
     }
 }
 
