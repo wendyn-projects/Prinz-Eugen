@@ -11,7 +11,7 @@ export default class SetPreset extends Interface.ValueAction<Promise<Response>> 
     static readonly reactions = [ '1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣', '🔟' ];
 
     constructor(config: GuildConfig, message: Discord.Message) {
-        super('preset', [ new CommandNameOption('preset') ]);
+        super('preset', []);
         this.config = config;
         this.message = message;
     }
@@ -45,20 +45,11 @@ export default class SetPreset extends Interface.ValueAction<Promise<Response>> 
 
         if(preset) {
             this.config.setPreset(preset);
-            response.setAuthor(
-                `${this.message.member.displayName} has changed preset to ${this.config.getPreset()}`,
-                this.message.author.avatarURL(),
-                'https://discord.com/channels/@me/'
-            );
-            response.setColor(this.message.member.displayHexColor);
+            response.setDescription(`${this.message.member.displayName} has changed preset to ${this.config.getPreset()}`);
         } else {
-            response.setAuthor(
-                `no preset was set`,
-                this.message.guild.me.user.avatarURL(),
-                'https://discord.com/channels/@me/'
-            );
-            response.setColor(this.message.guild.me.displayHexColor);
+            response.setDescription('no preset was set');
         }
+        response.setColor(this.message.guild.me.displayHexColor);
 
         return new Response(response);
     }
