@@ -1,8 +1,8 @@
 import * as Discord from 'discord.js'
-import * as Interface from '../../../interface'
-import GuildConfig from '../../../server/config/GuildConfig'
-import PresetsShower from './show/presets'
-import AdminRolesShower from './show/AdminRoles'
+import * as Interface from '../../../../interface'
+import GuildConfig from '../../../../server/config/GuildConfig'
+import PresetsShower from './presets'
+import AdminRolesShower from './AdminRoles'
 
 
 export default class extends Interface.ActionSelector {

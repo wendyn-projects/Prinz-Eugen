@@ -3,9 +3,9 @@ import * as Interface from '../../interface'
 import { MessageGroup, Presets, default as GuildConfig } from '../../server/config/GuildConfig'
 import ImageSender from './ImageSender'
 import HelpProvider from './help/HelpProvider'
-import AdminSetters from './administration/Set'
-import AdminAdder from './administration/Add'
-import AdminShowers from './administration/Show'
+import AdminSetters from './administration/setters/Set'
+import AdminAdder from './administration/add/Add'
+import AdminShowers from './administration/show/Show'
 
 export default class extends Interface.ActionSelector {
 
