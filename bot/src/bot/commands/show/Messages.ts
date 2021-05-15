@@ -37,7 +37,7 @@ export default class extends Interface.ValueAction<Response> {
                 fields.push({ name: name, value: group.description });
             }
         });
-        return new Response(new Discord.MessageEmbed().setTitle('Messages available to you').
+        return new Response(new Discord.MessageEmbed().setTitle('Messages Available to You').
             addFields(fields).
             setColor(this.message.guild.me.displayHexColor)
         );
