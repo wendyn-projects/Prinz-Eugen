@@ -9,7 +9,11 @@ export class CommandNameOption extends Interface.StringOption {
     }
 
     public static toCommandName(input: string): string {
-        return input.toLowerCase().replace(/[^a-z0-9|]/g, '_');
+        return input.
+            replace(/^ *\||\| *$/g, '').
+            trim().
+            toLowerCase().
+            replace(/[^a-z0-9|]/g, '_');
     }
 }
 
