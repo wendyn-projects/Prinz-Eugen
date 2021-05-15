@@ -6,6 +6,7 @@ import HelpProvider from './help/HelpProvider'
 import AdminSetters from './administration/setters/Set'
 import AdminAdder from './administration/add/Add'
 import AdminShowers from './administration/show/Show'
+import Shower from './show/Show'
 
 export default class extends Interface.ActionSelector {
 
@@ -28,7 +29,8 @@ export default class extends Interface.ActionSelector {
             let adminCommands: Interface.ValueAction[] = [
                 new AdminSetters(config, message),
                 new AdminAdder(config, message),
-                new AdminShowers(config, message)
+                new AdminShowers(config, message),
+                new Shower(config, message)
             ];
             commands = commands.concat(adminCommands);
         }
