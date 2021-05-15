@@ -19,7 +19,7 @@ export default class extends ValueAction<Response> {
         let roles = this.config.getAdminRoles();
         return new Response(roles.length > 0?
             `**Admnistrative roles:**\n${this.message.guild.roles.cache.filter((role: Discord.Role) => 
-                roles.some((adminRole: MyDiscord.Id) => adminRole = role.id)).map((role: Discord.Role) => role).join(' ')
+                roles.some((adminRole: MyDiscord.Id) => adminRole === role.id)).map((role: Discord.Role) => role).join(' ')
             }`: '_no administrative roles_'
         );
     }
