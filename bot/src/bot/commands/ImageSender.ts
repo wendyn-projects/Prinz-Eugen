@@ -41,10 +41,7 @@ export default class extends Interface.ValueAction<Response> {
         let group: MessageGroup = this.config.getMessageGroups().find(
             (group: MessageGroup) => group.getName() === this.name)
 
-        if(group && group.images.some((image: Image) =>
-                image.roles.length === 0 ||
-                image.canBeUsedByAnyRole(this.userRoles)
-        )) {
+        if(group && group.isAvailable(this.userRoles)) {
             this.messageGroup = group;
         } else {
             this.messageGroup = this.presetGroup;
