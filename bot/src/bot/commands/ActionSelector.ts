@@ -1,6 +1,7 @@
 import * as Discord from 'discord.js'
 import * as Interface from '../../interface'
 import { MessageGroup, Presets, default as GuildConfig } from '../../server/config/GuildConfig'
+import { ActionSelector } from './interface'
 import ImageSender from './ImageSender'
 import HelpProvider from './help/HelpProvider'
 import AdminSetters from './administration/setters/Set'
@@ -8,7 +9,7 @@ import AdminAdder from './administration/add/Add'
 import AdminShowers from './administration/show/Show'
 import Shower from './show/Show'
 
-export default class extends Interface.ActionSelector {
+export default class extends ActionSelector {
 
     message: Discord.Message;
 

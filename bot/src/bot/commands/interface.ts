@@ -5,7 +5,29 @@ import * as MyDiscord from '../../myDiscord'
 export class CommandNameOption extends Interface.StringOption {
 
     protected parser(): string {
-        return this.unparsed[0].toLowerCase().replace(/[^a-z0-9|]/g, '_');
+        return CommandNameOption.toCommandName(this.unparsed[0]);
+    }
+
+    public static toCommandName(input: string): string {
+        return input.toLowerCase().replace(/[^a-z0-9|]/g, '_');
+    }
+}
+
+export abstract class ValueAction<T = any> extends Interface.ValueAction<T> {
+
+    protected nameCheck(): boolean {
+        return Interface.separateByPipe(this.name).some(
+            (name: string) => name === CommandNameOption.toCommandName(this.unparsed[0])
+        );
+    }
+}
+
+export abstract class ActionSelector<T = any> extends Interface.ActionSelector<T> {
+
+    protected nameCheck(): boolean {
+        return Interface.separateByPipe(this.name).some(
+            (name: string) => name === CommandNameOption.toCommandName(this.unparsed[0])
+        );
     }
 }
 

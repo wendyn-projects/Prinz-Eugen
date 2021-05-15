@@ -1,9 +1,8 @@
 import * as Discord from 'discord.js'
-import * as Interface from '../../../../interface'
 import { Presets, default as GuildConfig } from '../../../../server/config/GuildConfig'
-import { CommandNameOption, Response, MessageDialog } from '../../interface'
+import { ValueAction, Response, MessageDialog } from '../../interface'
 
-export default class SetPreset extends Interface.ValueAction<Promise<Response>> {
+export default class SetPreset extends ValueAction<Promise<Response>> {
 
     config: GuildConfig;
     message: Discord.Message;

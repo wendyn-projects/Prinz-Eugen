@@ -1,8 +1,7 @@
 import * as Discord from 'discord.js'
-import * as Interface from '../../../interface'
 import { Option, Action, ActionSelector } from '../../../formatting/HelpFormatting'
-import { Response } from '../interface'
-import { MessageGroup, Image, default as GuildConfig } from '../../../server/config/GuildConfig'
+import { ValueAction, Response } from '../interface'
+import { MessageGroup, default as GuildConfig } from '../../../server/config/GuildConfig'
 import formatter from './formatter'
 
 class MsgSender extends Action  {
@@ -37,7 +36,7 @@ export class HelpGroup {
     }
 }
 
-export default class extends Interface.ValueAction<Response> {
+export default class extends ValueAction<Response> {
 
     message: any;
     config: GuildConfig;

@@ -1,10 +1,10 @@
 import * as Discord from 'discord.js'
-import * as Interface from '../../../../interface'
 import GuildConfig from '../../../../server/config/GuildConfig'
+import { ActionSelector } from './../../interface'
 import SetPrefix from './Prefix'
 import SetPreset from './Preset'
 
-export default class extends Interface.ActionSelector {
+export default class extends ActionSelector {
 
     constructor(config: GuildConfig, message: Discord.Message) {
 
