@@ -1,6 +1,6 @@
 import * as Discord from 'discord.js'
 import * as Interface from '../../../interface'
-import { MessageGroup, Image, Presets, default as GuildConfig } from '../../../server/config/GuildConfig'
+import { MessageGroup, Presets, default as GuildConfig } from '../../../server/config/GuildConfig'
 import { Response } from '../interface'
 
 export default class extends Interface.ValueAction<Response> {
